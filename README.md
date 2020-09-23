@@ -29,16 +29,6 @@ key = pbkdf2(password.encode(), salt, iterations, keysize)
 ciph = GOST3412Kuznechik(key)
 
 
-# An initialization vector has different security requirements than a key,
-# so the IV usually does not need to be secret. However, in most cases,
-# it is important that an initialization vector is never reused
-# under the same key.
-# For CBC and CFB, reusing an IV leaks some information about
-# the first block of plaintext, and about any common prefix shared by
-# the two messages.
-# For OFB and CTR, reusing an IV completely destroys security.
-
-# iv: blocksize-sized initialization vector
 IV_SIZE = 32
 iv = urandom(IV_SIZE)
 
